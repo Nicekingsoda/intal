@@ -97,7 +97,23 @@
       <!--end::Sidebar-->
       <!--begin::App Main-->
       <main class="app-main">
-        <?php ?>
+        <?php 
+        $page = isset($_GET['page']) ? $_GET['page'] : "";
+
+        switch ($page) {
+          case 'dashboard':
+            include 'dashboard.php';
+            break;
+          case 'users':
+            include 'users.php';
+            break;
+          case 'add_user':
+            include 'add_user.php';
+            break;
+          default :
+            include 'dashboard.php' ;
+        }
+        ?>
       </main>
       <!--end::App Main-->
       <!--begin::Footer-->

@@ -4,12 +4,12 @@
 <head>
   <meta charset="UTF-8">
   <title>Login Status</title>
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>;
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 
 <body>
   <?php
-  require_once 'connect.php';
+  require_once 'conect.php';
 
   $username = $_POST['username'];
   $password = $_POST['password'];
@@ -26,15 +26,15 @@
     // Note: This SQL query is vulnerable to injection.
     // Using prepared statements is recommended for production environments.
     $sql = "SELECT * FROM users WHERE username='$username' AND password='$password'";
-    $result = $con->query($sql);
-    $row = mysqli_fetch_array($result);
+    $result = $con->query(query: $sql);
+    $row = mysqli_fetch_array(result: $result);
 
     if ($result && $result->num_rows > 0) {
       $alert_message = 'ยินดีต้อนรับเข้าสู่ระบบ';
       $alert_icon = 'success';
       $_SESSION['username'] = $row['username'];
       $_SESSION['fullname'] = $row['fullname'];
-      $redirect_page = 'dist/';
+      $redirect_page = 'dist/index.php';
     } else {
       $alert_message = 'username or password invalid';
       $alert_icon = 'error';
