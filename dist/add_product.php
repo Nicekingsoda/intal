@@ -8,18 +8,23 @@ if (isset($_POST['submit'])) {
     $pro_status = $_POST['pro_status'];
     if (empty($pro_name) || empty($pro_price) || empty($pro_amount) || empty($pro_status)) {
         echo "<script>alert('กรุณากรอกข้อมูลให้ครบ');history.back()</script>";
-    } else {
-        $sql = "INSERT INTO products(pro_name,pro_price,pro_amount,pro_status) VALUE('$pro_name',$pro_price,$pro_amount,'$pro_status')";
-        $result = $con->query(query: $sql);
-        if (!$result) {
-            echo "<script>alert('บันทึกข้อมูลผิดพลาด');history.back()</script>";
-        } else {
-            echo "<script>window.location.href = 'index.php?page=product' </script>";
+    } else { {
+            $old_data = $con->query("SELECT * FROM products where pro_name='$pro_name'");
+            $old_num = mysqli_num_rows($old_data);
+            if ($old_num == 1) {
+                echo  "<script>alert('สินค้านี้มีอยู่แล้ว');history.back()</script>";
+            } else {
+                $sql = "INSERT INTO products(pro_name,pro_price,pro_amount,pro_status) VALUE('$pro_name',$pro_price,$pro_amount,'$pro_status')";
+                $result = $con->query(query: $sql);
+                if (!$result) {
+                    echo "<script>alert('บันทึกข้อมูลผิดพลาด');history.back()</script>";
+                } else {
+                    echo "<script>window.location.href = 'index.php?page=product' </script>";
+                }
+            }
         }
     }
 }
-
-
 ?>
 <div class="app-content-header">
     <!--begin::Container-->

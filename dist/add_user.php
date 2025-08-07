@@ -13,7 +13,7 @@ if (isset($_POST['submit'])) {
     else {
         $old_data = $con->query("SELECT * FROM users");
         $old_num = mysqli_num_rows($old_data);
-        if ($old_num = 1) {
+        if ($old_num == 1) {
             echo  "<script>alert('username นี้มีคนใช้แล้ว');history.back()</script>";
         } else {
             $sql = "INSERT INTO users VALUE('$username','$password','$fullname','$phone','$email')";
