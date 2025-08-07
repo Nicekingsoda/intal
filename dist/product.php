@@ -1,6 +1,6 @@
 <?php
 require '../conect.php';
-$sql = 'SELECT * FROM Users';
+$sql = 'SELECT * FROM products';
 $result = $con->query(query: $sql)
 ?>
 <main class="app-main">
@@ -11,12 +11,12 @@ $result = $con->query(query: $sql)
             <!--begin::Row-->
             <div class="row">
                 <div class="col-sm-6">
-                    <h3 class="mb-0">Users List</h3>
+                    <h3 class="mb-0">Product List</h3>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-end">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">users list</li>
+                        <li class="breadcrumb-item active" aria-current="page">product list</li>
                     </ol>
                 </div>
             </div>
@@ -34,22 +34,21 @@ $result = $con->query(query: $sql)
                 <div class="col-md-12">
                     <div class="card mb-4">
                         <div class="card-header">
-                            <h3 class="card-title">User</h3>
+                            <h3 class="card-title">Product</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <a href="index.php?page=add_user" class="btn btn-success mb-4">
+                            <a href="index.php?page=add_product" class="btn btn-success mb-4">
                                 <i class="bi bi-person-add"></i>
                             </a>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>#</th>
-                                        <th>Username</th>
-                                        <th>Fullname</th>
-                                        <th>Phone</th>
-                                        <th>Email</th>
-                                        <th>Manage</th>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Price</th>
+                                        <th>Amount</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -58,13 +57,13 @@ $result = $con->query(query: $sql)
                                     while ($row = mysqli_fetch_array(result: $result)) {
                                     ?>
                                         <tr class="align-middle">
-                                            <td><?php echo $i ?></td>
-                                            <td><?php echo $row['username'] ?></td>
-                                            <td><?php echo $row['fullname'] ?></td>
-                                            <td><?php echo $row['phone'] ?></td>
-                                            <td><?php echo $row['emil'] ?></td>
-                                            <td><a href="index.php?page=edit_user&username=<?php echo $row['username'] ?>" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
-                                            <a href="index.php?page=del_user&username=<?php echo $row['username'] ?>" class="btn btn-danger" onclick="return confirm('Confirm on delete?')"><i class="bi bi-trash3"></i></a></td>
+                                            <td><?php echo $row['pro_id'] ?></td>
+                                            <td><?php echo $row['pro_name'] ?></td>
+                                            <td><?php echo $row['pro_price'] ?></td>
+                                            <td><?php echo $row['pro_amount'] ?></td>
+                                            <td><?php echo $row['pro_status'] ?></td>
+                                            <td><a href="index.php?page=edit_product&pro_id=<?php echo $row['pro_id'] ?>" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                            <a href="index.php?page=del_product&pro_id=<?php echo $row['pro_id'] ?>" class="btn btn-danger" onclick="return confirm('Confirm on delete?')"><i class="bi bi-trash3"></i></a></td>
                                         <?php
                                         $i++;
                                     } ?>
